@@ -39,7 +39,7 @@
 /* MEDIA FOR PRINT*/
 
 @media print{
-  #adminmenuback,#adminmenuwrap,#wpadminbar,#wpfooter,.update-nag,.cw-epu-no-print,.mini,.icon32{display:none !important;}
+  #adminmenuback,#adminmenuwrap,#wpadminbar,#wpfooter,#blackbox-web-debug,.update-nag,.cw-epu-no-print,.icon32{display:none !important;}
 	.cw-epu-wrap-admin .main-admin-container,#wpcontent,table.widefat td{width:100% !important;}
 	html.wp-toolbar{padding-top:0px !important;}
 	#wpcontent{margin-left:0px;}

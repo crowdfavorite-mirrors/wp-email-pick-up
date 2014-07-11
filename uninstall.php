@@ -37,4 +37,4 @@ else
 }
 
 //Delete table
-$wpdb->query("DROP TABLE IF EXISTS $cw_epu_table");
+//$wpdb->query("DROP TABLE IF EXISTS $cw_epu_table");

@@ -25,7 +25,7 @@ class CW_Email_Pick_Up {
 	 *
 	 * @var     string
 	 */
-	const VERSION = '1.0.1';
+	const VERSION = '1.3.0';
 
 
   /**
@@ -299,7 +299,7 @@ class CW_Email_Pick_Up {
 
     $epu_table_name = $wpdb->prefix . "cw_epu_subscribers";
 
-    $sql = "CREATE TABLE $epu_table_name (
+    $sql = "CREATE TABLE IF NOT EXISTS $epu_table_name (
   `id` int(11) not null primary key auto_increment,
   `email` varchar(255) null,
   `date_added` datetime null,
@@ -364,17 +364,21 @@ class CW_Email_Pick_Up {
       "error_message" => 'Please enter your email',
       "success_message" => 'Thank you!',
       "refer" => 'Main List',
-      "css_class"=>''
+      "css_class"=>'',
+      "redirect"=>'',
+      "api_name"=>'',
+      "api_key"=>'',
+      "api_list"=>''
     ), $atts));
 
     $hide_label=strtolower($hide_label);
+    $api_name=strtolower($api_name);
 
     if (((!empty($_SERVER['REQUEST_METHOD']))&&($_SERVER['REQUEST_METHOD'] == 'POST'))&&(!empty( $_POST['cw_epu_nonce_field'] ) && wp_verify_nonce($_POST['cw_epu_nonce_field'],'cw-epu-form-submitted'))&&($_POST['cw_epu_form_prefix_id']==$form_prefix_id)) {
 
 
 
       $formdata=array(
-        'cw_epu_refer' => esc_attr( $_POST['cw_epu_refer_'.$form_prefix_id] ),
         'cw_epu_email' => esc_attr( $_POST['cw_epu_email_'.$form_prefix_id] )
       );
 
@@ -399,17 +403,44 @@ class CW_Email_Pick_Up {
           $epu_table_name,
           array(
             'email'=>$formdata['cw_epu_email'],
-            'refer'=>$formdata['cw_epu_refer'],
+            'refer'=>$refer,
             'date_added'=>date('Y-m-d H:i:s')
           )
         );
-        $success=$success_message;
+				
+				/*
+				*	INinbox Integration
+				*/
+				
+				if($api_name=='ininbox'){
+					if($api_key && $api_list){
+
+						$api_lists=explode(',',$api_list);
+						require_once( plugin_dir_path( __FILE__ ) . 'api/InInboxApiLib/InInboxBase.php' );
+						$ininbox=new InInboxBase($api_key);
+						$result = $ininbox->contactAdd($formdata['cw_epu_email'], $api_lists);		
+					}
+				}
+				/*
+				*	INinbox END
+				*/
+				
+        $success.=$success_message;
         $hasSuccess=true;
       }
 
       unset($_SERVER['REQUEST_METHOD']);
       unset($_POST);
       $_POST=null;
+		
+			//redirect if option "redirect" is exist
+			if($redirect!=""){
+				return '<script type="text/javascript">
+				<!--
+				window.location = "'.$redirect.'"
+				//-->
+				</script>';
+			}
 
     }
 
@@ -431,9 +462,8 @@ class CW_Email_Pick_Up {
       }
       $emailpickup_form.='
         <div class="cw-epu-form-wrapper">
-          <form class="cw-epu-form" name="cw_epu_form_'.$form_prefix_id.'" id="cw-epu-form-'.$form_prefix_id.'" method="post" action="'.get_permalink().'">
+          <form class="cw-epu-form" name="cw_epu_form_'.$form_prefix_id.'" id="cw-epu-form-'.$form_prefix_id.'" method="post" action="">
             <input type="hidden" name="cw_epu_form_prefix_id" value="'.$form_prefix_id.'" />
-            <input type="hidden" name="cw_epu_refer_'.$form_prefix_id.'" value="'.$refer.'" />
         ';
         if($hide_label!='yes'){
           $emailpickup_form.='

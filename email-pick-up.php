@@ -10,7 +10,7 @@
  * Plugin Name:       Email Pick Up
  * Plugin URI:        http://circlewaves.com/products/plugins/email-pick-up/
  * Description:       Capture email addresses, useful for landing pages, insert opt-in form into post or page using shortcode, create multiple lists, export emails to CSV
- * Version:           1.0.1
+ * Version:           1.3.0
  * Author:            Circlewaves
  * Author URI:        http://circlewaves.com
  * Text Domain:       cw-epu-locale

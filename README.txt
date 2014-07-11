@@ -1,10 +1,10 @@
 === Email Pick Up ===
 Contributors: circlewaves-team
 Donate link: http://circlewaves.com/hire-us/
-Tags: email, marketing, email-marketing, opt-in, subscribe, capture, promotion, landing page, coming soon
+Tags: email, marketing, INinbox, API, email-marketing, opt-in, subscribe, capture, promotion, landing page, coming soon
 Requires at least: 3.5.1
-Tested up to: 3.7
-Stable tag: 1.0.1
+Tested up to: 3.8
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,11 +15,14 @@ Capture email addresses, useful for landing pages, insert opt-in form into post 
 This plugin allow you create simple and powerful landing pages with email capture form.
 Will be useful to promote your products, "Coming soon" pages and create multiple subscribers lists for your newsletters.
 
+Also this plugin is integrated with [INinbox](http://www.ininbox.com/ "ininbox.com")
+
 **Features:**
 
 * Easy and flexible
 * Shortcode ready
 * User-friendly interface integrated in WordPress Visual Editor
+* Integrated with INinbox
 * Fully customizable
 * CSV Export
 * Multiple subscribers lists
@@ -45,6 +48,19 @@ For example, hide input label and add input placeholder:
 * success_message - text, default 'Thank you!'
 * refer - text, default 'Main List'
 * css_class - text, default ''
+* redirect - text, default ''
+
+**Integration with INibox:**
+
+Just add following options to the Email Pick Up shortcode:
+
+* api_name="INinbox"
+* api_key="YOUR_ININBOX_API_KEY"
+* api_list="your-ininbox-list-id-1,your-ininbox-list-id-2,your-ininbox-list-id-3..etc"
+
+For example:
+[emailpickup hide_label="yes" placeholder="Enter your email" api_name="INinbox" api_key="xxxxxxxxxxxxxxxxx" api_list="your-ininbox-list-id-1"]
+[emailpickup hide_label="yes" placeholder="Enter your email" api_name="INinbox" api_key="xxxxxxxxxxxxxxxxx" api_list="your-ininbox-list-id-1,your-ininbox-list-id-2"]
 
 **Learn more**
 
@@ -87,6 +103,12 @@ For example:
 
 Use "Export" button on plugin option page to export existing subscribers to CSV File.
 
+= It's possible to setup redirect page? =
+
+Yes, you should use "redirect" option in your shortcode. For example: 
+[emailpickup redirect="/success/"] - for page placed on your website
+[emailpickup redirect="http://example.com/success/"] - for page placed on another website
+
 == Screenshots ==
 
 1. Insert form using WordPress Visual Editor
@@ -94,7 +116,7 @@ Use "Export" button on plugin option page to export existing subscribers to CSV 
 3. Using email pick up form without options
 4. Use custom CSS. Customize each form as you wish by adding specific css class.
 5. Custom form options. Use input placeholder instead of input label (hide label and add placeholder), change button text, customize messages.
-6. View stats and export subscribers to CSV.
+6. Email Pick Up options screen.
 
 == Changelog ==
 
@@ -104,3 +126,11 @@ Use "Export" button on plugin option page to export existing subscribers to CSV 
 = 1.1 =
 * Added ability to view subscribers list 
 * Added ability to printing subscribers list from wp-admin
+
+= 1.2 =
+* Fixed problem with using form within post-page
+* Added "Redirect" option, useful for tracking subscribed users.
+
+= 1.3 =
+* Integrated with INinbox.com
+* Admin icon replaced with dashicon

@@ -25,7 +25,11 @@
                         'error_message' : 'Please enter your email',
                         'success_message' : 'Thank you!',
                         'refer' : 'Main List',
-                        'css_class' : ''
+                        'css_class' : '',
+                        'redirect' : '',
+                        'api_name' : '',
+                        'api_key' : '',
+                        'api_list' : ''
                     };
 
                     // get form id
@@ -41,7 +45,10 @@
                         if(key=='hide_label'){
                             var val_new = jQuery("[name='cw_epu_"+key+"']", form_id).is(':checked');
                             val_new=val_new?'yes':'no';
-                        }else{
+                        }else if(key=='api_name'){
+                            var val_new = jQuery("[name='cw_epu_"+key+"']", form_id).is(':checked');
+                            val_new=val_new?'INinbox':'';												
+												}else{
                             var val_new = jQuery("[name='cw_epu_"+key+"']", form_id).val();
                         }
                         //if new value from form isn't the same as default value - insert it into shortcode
@@ -76,8 +83,10 @@
                 // triggers the thickbox
                 var width = jQuery(window).width(), H = jQuery(window).height(), W = ( 720 < width ) ? 720 : width;
                 W = W - 80;
-                H = H - 84;
+                H = H - 114;
                 tb_show( 'Email Pickup Form', '#TB_inline?width=' + W + '&height=' + H + '&inlineId=cw-epu-popup-wrapper' );
+								//add class to thickbox for style scrollbars
+								jQuery("#TB_window").addClass("cw_epu_popup_form");								
 
 
             });

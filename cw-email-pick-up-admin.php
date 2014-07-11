@@ -161,7 +161,8 @@ class CW_Email_Pick_Up_Admin {
 			'manage_options',
 			$this->plugin_slug,
 			array( $this, 'display_plugin_admin_page' ),
-      plugins_url( 'img/menu_icon.png', __FILE__)
+     'dashicons-admin-generic'
+     // plugins_url( 'img/menu_icon.png', __FILE__)
 		);
 		
 

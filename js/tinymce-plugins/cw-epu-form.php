@@ -5,7 +5,10 @@ if ( !defined('ABSPATH') ) {
 }
 ?>
 <style>
+	.cw_epu_popup_form{overflow:hidden!important;}
+	.cw_epu_popup_form #TB_ajaxContent{overflow-y:scroll!important;}
   .cw-epu-popup-form-wrapper{}
+  .cw-epu-popup-form-wrapper .fieldset-wrapper{margin-bottom:10px;}	
   .cw-epu-popup-form-wrapper label{display:block;float:left;width:130px;line-height: 23px;}
   .cw-epu-popup-form-wrapper label.simple{display:inline;float:none;}
   .cw-epu-popup-form-wrapper a{color:#21759b !important;}
@@ -39,10 +42,19 @@ if ( !defined('ABSPATH') ) {
       </div>
       <div class="fieldset-wrapper">
         <fieldset>
+          <legend>INinbox integration</legend>
+            <div class="field-row"><input type="checkbox" id="cw-epu-api-name" name="cw_epu_api_name" /> <label class="simple" for="cw-epu-api-name">Integrate with <a href="http://www.ininbox.com/" target="_blank" title="Learn more">INinbox</a></label></div>
+            <div class="field-row"><label for="cw-epu-api-key">API Key:</label><input id="cw-epu-api-key" name="cw_epu_api_key" type="text" /> <span class="field-help"><a href="http://www.ininbox.com/api" target="_blank" title="Learn more">Learn more</a></span></div>
+            <div class="field-row"><label for="cw-epu-api-list">API List:</label><input id="cw-epu-api-list" name="cw_epu_api_list" type="text" /> <span class="field-help">Comma-separated Lists IDs</span></div>
+        </fieldset>
+      </div>			
+      <div class="fieldset-wrapper">
+        <fieldset>
           <legend>Other Options</legend>
           <div class="field-row"><label for="cw-epu-placeholder">Input Placeholder:</label><input id="cw-epu-placeholder" name="cw_epu_placeholder" type="text" /> <span class="field-help">Default is empty</span></div>
           <div class="field-row"><label for="cw-epu-button-text">Submit Button Text:</label><input id="cw-epu-button-text" name="cw_epu_button_text" type="text" /> <span class="field-help">Default is "Submit"</span></div>
           <div class="field-row"><label for="cw-epu-refer">Subscriber List:</label><input id="cw-epu-refer" name="cw_epu_refer" type="text" /> <span class="field-help">Default is "Main List"</span></div>
+          <div class="field-row"><label for="cw-epu-redirect">Redirect Page:</label><input id="cw-epu-redirect" name="cw_epu_redirect" type="text" /> <span class="field-help">Default is empty</span></div>
         </fieldset>
       </div>
       <div class="fieldset-wrapper">
